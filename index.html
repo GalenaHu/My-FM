@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="referrer" content="never">
+    <title>我的FM</title>
+    <link rel="stylesheet" href="style/style.css">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="//at.alicdn.com/t/font_1150084_dl3a5ni2igo.js"></script>
+</head>
+
+<body>
+    <div class="channels">
+        <div class="flex"></div>
+    </div>
+    <main>
+        <section>
+            <audio id="music">我们这边建议换chrome浏览器呢</audio>
+            <div class="photoContainer">
+                <div class="photo"></div>
+            </div>
+            <div class="message">
+                <div class="channelName">电影</div>
+                <div class="title"></div>
+                <div class="artist"></div>
+                <div class="lyrics">
+                    <p></p>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div class="musicControl">
+                <div id="love"><svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-love"></use>
+                    </svg></div>
+                <div id="play"><svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-play"></use>
+                    </svg></div>
+                <div id="pause" style="display:none"><svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-pause"></use>
+                    </svg></div>
+                <div id="next"><svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-next"></use>
+                    </svg></div>
+            </div>
+            <div class="musicBar">
+                <div class="currentTime">00:00</div>
+                <div class="bar">
+                    <div class="back">
+                        <div class="download"></div>
+                        <div class="progress">
+                            <div class="btn"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="duration">-- : --</div>
+            </div>
+            <div class="toggle">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-triangle"></use>
+                </svg>
+            </div>
+        </footer>
+    </main>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
