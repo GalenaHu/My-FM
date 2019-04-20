@@ -18,11 +18,11 @@
         $progress: $('.progress'),
     };
     var model = {
-        originUrl: 'https://jirenguapi.applinzi.com/fm/',
-        channelUrl: 'https://jirenguapi.applinzi.com/fm/getChannels.php',
-        songUrl: 'https://jirenguapi.applinzi.com/fm/getSong.php',
+        originUrl: '//jirenguapi.applinzi.com/fm/',
+        channelUrl: '//jirenguapi.applinzi.com/fm/getChannels.php',
+        songUrl: '//jirenguapi.applinzi.com/fm/getSong.php',
         channelIdUrl: 'public_fengge_dianyingyuansheng',
-        lyricUrl: 'http://jirenguapi.applinzi.com/fm/getLyric.php',
+        lyricUrl: '//jirenguapi.applinzi.com/fm/getLyric.php',
         lyricObj: {},
         fetch: function(url, data) {
             return $.getJSON(url, data);
@@ -43,7 +43,7 @@
         },
         setSong: function() {
             var audioObject = document.querySelector('#music');
-            $('.lyricContainer').children().remove();
+            $('.lyrics>p').text('');
             model.fetch(model.songUrl, { channel: model.channelIdUrl }).then((response) => {
                 view.$music.attr("src", response.song[0].url);
                 view.$photo.css('background-image', 'url(' + response.song[0].picture + ')')
@@ -56,7 +56,6 @@
             })
         },
         setLyric: function(sid) {
-
             model.fetch(model.lyricUrl, { sid: sid }).then((response) => {
                 response.lyric.split('\n').forEach(function(line) {
                     var times = line.match(/\d{2}:\d{2}/g);
@@ -101,6 +100,10 @@
             controller.audio();
             controller.progressMove();
             controller.timeInterval();
+            $('body').css('height', document.documentElement.clientHeight)
+            $(window).resize(function() {
+                $('body').css('height', document.documentElement.clientHeight)
+            })
         },
         bind: function() {
             view.$toggle.on('click', function() {
@@ -136,6 +139,10 @@
             audioObject.addEventListener('ended', function() {
                 model.setSong();
             })
+            $('.retreat').on('click', function() {
+                view.$main.toggleClass('mainMove');
+                view.$toggle.toggleClass('toggleRotate');
+            })
 
         },
         progressMove: function() {
@@ -163,6 +170,33 @@
                 }
             });
             $(document).on('mouseup', function() {
+                if (drag) {
+                    drag = false;
+                    controller.timeInterval();
+                    audioObject.currentTime = Math.floor(parseInt(view.$progress.css('width')) / parseInt($('.back').css('width')) * audioObject.duration);
+                }
+            })
+            $('.btn').on('touchstart', function(e) {
+                drag = true;
+                position = e.originalEvent.changedTouches[0].clientX;
+            });
+            $(document).on('touchmove', function(e) {
+                if (drag) {
+                    window.clearInterval(controller.timer);
+                    let bx = parseInt(view.$progress.css('width'));
+                    let dx = e.originalEvent.changedTouches[0].clientX - position;
+                    position = e.originalEvent.changedTouches[0].clientX;
+                    if (bx <= -4) {
+                        bx = -4
+                    }
+                    if (bx >= $('.back').width()) {
+                        bx = $('.back').width() - 10;
+                    }
+                    view.$progress.css('width', bx + dx + 'px');
+                    view.$currentTime.text(model.timeFormat(Math.floor(parseInt(view.$progress.css('width')) / parseInt($('.back').css('width')) * audioObject.duration)));
+                }
+            });
+            $(document).on('touchend', function() {
                 if (drag) {
                     drag = false;
                     controller.timeInterval();

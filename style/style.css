@@ -16,7 +16,6 @@ body {
     color: #0D1426;
     background: #CBCFD4;
     position: relative;
-    height: 100vh;
     user-select: none;
 }
 
@@ -26,9 +25,9 @@ body {
     position: absolute;
     left: 0;
     bottom: 0;
-    height: calc(100vh - 80px);
+    height: calc(100% - 80px);
     overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
+
     padding: 20px;
 }
 
@@ -62,7 +61,7 @@ body {
 }
 
 main {
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     background: #FEFEFE;
     position: absolute;
@@ -71,37 +70,177 @@ main {
     transition: margin-top 0.5s;
 }
 
-.mainMove {
-    margin-top: calc(80px - 100vh);
+.photo {
+    height: 90%;
+    width: 90%;
+    border-radius: 50%;
+    background-size: cover;
+    margin: auto;
+    background-position: center center;
 }
 
-section {
-    height: calc(100vh - 80px);
+.photoContainer {
     display: flex;
     padding: 30px;
-    justify-content: center;
+}
+
+.lyrics {
+    font-weight: bold;
+    position: relative;
+}
+
+.lyrics>p {
+    position: absolute;
+    top: 25%;
+    transform: translate(0, -50%);
 }
 
 footer {
     background: #0D1426;
-    height: 80px;
-    display: flex;
-    padding: 20px;
-    justify-items: center;
-    vertical-align: middle;
     z-index: 5;
 }
+
+.musicControl>div {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.title {
+    color: #0D1426;
+    font-weight: bold;
+}
+
+@media (min-width: 800px) {
+
+
+    .mainMove {
+        margin-top: calc(80px - 100vh);
+    }
+
+    .channels {
+        height: calc(100% - 80px);
+    }
+
+    section {
+        height: calc(100% - 80px);
+        display: flex;
+        padding: 30px;
+        justify-content: center;
+    }
+
+    .message {
+        flex: 1;
+        padding: 3vw;
+        height: 70%;
+        max-width: 1000px;
+        margin: auto;
+        margin-left: 0;
+    }
+
+
+    .photoContainer {
+        height: 50vh;
+        width: 50vh;
+        margin: auto;
+        margin-right: 0;
+    }
+
+    .lyrics {
+        margin-top: 6vh;
+        height: 30%;
+        font-size: 4vh;
+    }
+
+
+
+    footer {
+        height: 80px;
+        display: flex;
+        padding: 20px;
+        justify-items: center;
+        vertical-align: middle;
+    }
+
+    .musicControl>div {
+        padding: 0 5px;
+    }
+
+    .title {
+        font-size: 5vh;
+    }
+}
+
+
+@media (max-width: 800px) {
+
+    main {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .mainMove {
+        margin-top: -100vh;
+    }
+
+    .channels {
+        height: 100%;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    section {
+        padding: 30px;
+        flex: 1;
+    }
+
+    .message {
+        padding: 3vw;
+        height: 30%;
+        text-align: center;
+    }
+
+
+    .photoContainer {
+        height: 41vh;
+        width: 41vh;
+        margin: 0 auto;
+    }
+
+    .lyrics {
+        margin-top: 4vh;
+        height: 10%;
+        font-size: 2vh;
+    }
+
+    .lyrics>p {
+        width: 100%;
+        text-align: center;
+    }
+
+    footer {
+        padding: 10px;
+        z-index: 5;
+        padding-bottom: 50px;
+        width: 100%;
+    }
+
+    .musicControl>div {
+        padding: 0 10px;
+    }
+
+    .title {
+        font-size: 3vh;
+    }
+}
+
 
 .musicControl {
     font-size: 20px;
     padding: 10px;
+    display: flex;
+    justify-content: center;
 }
 
-.musicControl>div {
-    padding: 0 5px;
-    display: inline-block;
-    cursor: pointer;
-}
+
 
 .musicControl>div>svg {
     display: block;
@@ -127,37 +266,8 @@ footer {
     transform: rotate(180deg);
 }
 
-.photoContainer {
-    height: 70%;
-    display: flex;
-    padding: 30px;
-    margin: auto;
-    margin-right: 0;
-}
 
-.photo {
-    height: 50vh;
-    width: 50vh;
-    border-radius: 50%;
-    background-size: cover;
-    margin: auto;
-    background-position: center center;
-}
 
-.message {
-    flex: 1;
-    padding: 3vw;
-    height: 70%;
-    max-width: 1000px;
-    margin: auto;
-    margin-left: 0;
-}
-
-.title {
-    color: #0D1426;
-    font-size: 5vh;
-    font-weight: bold;
-}
 
 .artist {
     color: #0D1426;
@@ -215,18 +325,4 @@ footer {
     top: -5px;
     box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.5);
     cursor: pointer;
-}
-
-.lyrics {
-    margin-top: 6vh;
-    height: 30vh;
-    font-size: 4vh;
-    font-weight: bold;
-    position: relative;
-}
-
-.lyrics>p {
-    position: absolute;
-    top: 25%;
-    transform: translate(0, -50%);
 }
