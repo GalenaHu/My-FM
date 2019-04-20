@@ -49,8 +49,8 @@
                 view.$photo.css('background-image', 'url(' + response.song[0].picture + ')')
                 view.$title.text(response.song[0].title);
                 view.$artist.text(response.song[0].artist);
-                model.setLyric(response.song[0].sid);
                 audioObject.oncanplay = function() {
+                    model.setLyric(response.song[0].sid);
                     view.$duration.text(model.timeFormat(audioObject.duration));
                 }
             })
