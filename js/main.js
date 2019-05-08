@@ -70,7 +70,7 @@
                     }
                 })
             }, () => {
-                $('.lyrics').text('暂无歌词');
+                $('.lyrics>p').text('暂无歌词');
             })
         },
         timeFormat: function(time) {
