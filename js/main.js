@@ -44,6 +44,7 @@
         setSong: function() {
             var audioObject = document.querySelector('#music');
             $('.lyrics>p').text('');
+            model.lyricObj = {};
             model.fetch(model.songUrl, { channel: model.channelIdUrl }).then((response) => {
                 view.$music.attr("src", response.song[0].url);
                 view.$photo.css('background-image', 'url(' + response.song[0].picture + ')')
